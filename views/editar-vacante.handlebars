@@ -1,0 +1,70 @@
+<main class="contenedor">
+  <form action="/vacantes/editar/{{vacante.url}}" method="POST" class="default-form">
+    <h3>Información General</h3>
+
+    <div class="campo">
+      <label for="titulo">Titulo</label>
+      <input 
+        type="text" 
+        name="titulo" 
+        id="" 
+        placeholder="Ej. React Developer" 
+        value="{{vacante.titulo}}"
+        required></div>
+    <div class="campo">
+      <label for="empresa">Empresa</label>
+      <input 
+        type="text" 
+        name="empresa" 
+        id="" 
+        placeholder="Empresa que Contrata" 
+        value="{{vacante.empresa}}" 
+        required></div>
+    <div class="campo">
+      <label for="ubicacion">Ubicación</label>
+      <input 
+        type="text" 
+        name="ubicacion" 
+        id="" 
+        placeholder="Ej. México" 
+        value="{{vacante.ubicacion}}" 
+        required></div>
+    <div class="campo">
+      <label for="salario">Salario</label>
+      <input 
+        type="text" name="salario" id="" placeholder="Ej. 500 USD" value="{{vacante.salario}}" required>
+    </div>
+
+    <div class="campo">
+      <label for="contrato">Contrato</label>
+      <select name="contrato" id="">
+        {{#contratoActual vacante.contrato}}
+          <option value="" disabled selected>--Selecciona--</option>
+          <option value="Freelance">Freelance</option>
+          <option value="Tiempo Completo">Tiempo Completo</option>
+          <option value="Medio Tiempo">Medio Tiempo</option>
+          <option value="Por Proyecto">Por Proyecto</option>
+        {{/contratoActual}}
+      </select>
+    </div>
+
+    <h3>Descripción</h3>
+
+    <div class="campo descripcion">
+      <label for="descripcion">Descripcion</label>
+      <input type="hidden" value="{{{vacante.descripcion}}}" name="descripcion" id="x">
+      <trix-editor input="x"></trix-editor>
+    </div>
+
+    <h3>Conocimientos</h3>
+
+    <ul class="lista-conocimientos">
+      {{#seleccionarSkills vacante.skills}}{{/seleccionarSkills}}
+    </ul>
+
+    <div class="campo centrar-horizontal">
+      <input type="hidden" name="skills" id="skills">
+      <input type="submit" value="Guardar" class="btn btn-azul">
+    </div>
+  </form>
+</main>
